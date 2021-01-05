@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+
+
+
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+</head>
+
+
+
+<script>
+$(document).ready(function() 
+{
+
+
+$("button").click(function()
+{
+
+var user = $("#user").val();
+var password = $("#password").val();
+
+$.post("login.php", {"user": user, "password": password}, function(data, status)
+{
+	var object = JSON.parse(data);
+	console.log(data);
+	console.log(object);
+	console.log(object.val);
+	console.log(object.message);
+	
+	
+	if(object.val != 1)
+	{
+	  $("#response").html(object.message);
+	}
+	
+	else
+    {
+	  $("#response").html("");
+	}
+	
+});
+
+});
+
+});
+</script>
+
+
+
+<h1>Title</h1>
+
+    <div id="response"> </div>
+	
+    <label>User:</label>
+	<input type="user" id="user">
+	<br/>
+	
+	
+	<label>Password:</label>
+	<input type="password" id="password">
+	<br/>
+	
+	<button> Submit </button>
+	
+
+</html>
